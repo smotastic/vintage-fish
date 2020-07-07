@@ -13,9 +13,6 @@ A task contains the following attributes:
 * spentTimes -> An array of the previously spent times on this task ( a task can be stopped and resumed multiple times)
 * running -> marks a task as "currently running"
 
-
-## Time Tracking Process
-
 # Functional Requirements
 
 ## Creating Tasks
@@ -47,6 +44,7 @@ TODO
 A task, which is not running can be started.
 
 The "started" attribute of this task will be set to the current time.
+The "running" attribute of this task will be set to true.
 
 ## Manually Stop Task
 A task, who is currently running, can be stopped.
@@ -56,6 +54,8 @@ The "stopped" attribute of this task will be set to the current time.
 The current "started" and "stopped" time will also be added to the spentTimes array as a new object-entry. This will ensure that this task can be resumed again, and the previously spent time is not lost for the final time tracking.
 
 The "started" and "stopped" time will then be emptied for this task, so it can be potentially resumed again.
+
+The "running" attribute of this task will be set to false.
 
 
 ## Automatically Start Task
