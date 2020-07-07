@@ -31,7 +31,7 @@ Otherwise a manual added task, has to be started manually, there are no automati
 Multiple tasks can be imported by the users outlook calendar.
 For each calendar appointment entry a task with the following attributes will be created:
 * summary -> the title of the appointment
-* description the description of the appointment
+* description -> the description of the appointment
 * started -> the start time of the appointment (ensures that this task is automatically started, see *Automatically Start Task*)
 * stopped -> the stop time of the appointment (ensures that this task is automatically stopped, see *Automatically End Task*)
 
@@ -41,7 +41,7 @@ TODO
 
 ## Manually Start Task
 
-A task, which is not running can be started.
+A task, which is not running can be started / resumed.
 
 The "started" attribute of this task will be set to the current time.
 The "running" attribute of this task will be set to true.
@@ -61,7 +61,7 @@ The "running" attribute of this task will be set to false.
 ## Automatically Start Task
 A task will be automatically started, if the user previously set a "started" time in the future for this task.
 
-To find a task, that has to be potentially started a poll will check every minute if a task should be automatically started, because his "started" time is equals to the current time. 
+To find a task that has to be potentially started a poll will check every minute if a task should be automatically started. A task should be started if his "started" time is equals to the current time. 
 
 A task can only be automatically started if no other task is currently running.
 If a task should be started, but cannot, a warning is shown to the user.
@@ -72,9 +72,7 @@ If a task can be started, all conditions of ***Manually Start Task*** are applie
 ## Automatically Stop Task
 A running task will be automatically stopped, if the user previously set a "stopped" time in the future for this task.
 
-To find a task, that has to be potentially stopped a poll will check every minute if a task should be automatically stopped, because his "stopped" time is equals to the current time. 
-
-A task can only be automatically started if no other task is currently running.
+To find a task that has to be potentially stopped a poll will check every minute if a task should be automatically stopped. A task should be stopped if his "stopped" time is equals to the current time. 
 
 If the task will be stopped, all conditions of ***Manually Stop Task*** are applied as well.
 
