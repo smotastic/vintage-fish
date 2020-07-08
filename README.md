@@ -64,7 +64,11 @@ A task will be automatically started, if the user previously set a "started" tim
 To find a task that has to be potentially started a poll will check every minute if a task should be automatically started. A task should be started if his "started" time is equals to the current time. 
 
 A task can only be automatically started if no other task is currently running.
+
 If a task should be started, but cannot, a warning is shown to the user.
+The user can now chose if he want to stop the currently running task, and continue the task which can be automatically started.
+If the user confirms this, the currently running task will be stopped (***Manually Stop Task***), and the other task will be started.
+
 
 If a task can be started, all conditions of ***Manually Start Task*** are applied as well.
 
@@ -92,3 +96,5 @@ When a task is created without a ticketnumber in the summary, the application wi
 
 ## CLI 
 CLI to create tasks via shell
+
+## Automatically resume Tasks
