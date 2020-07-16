@@ -11,31 +11,14 @@
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
 
-        <q-toolbar-title>
-          Vintage Fish
-        </q-toolbar-title>
-
+        <q-toolbar-title>Vintage Fish</q-toolbar-title>
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-      content-class="bg-grey-1"
-    >
+    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
-        <q-item-label
-          header
-          class="text-grey-8"
-        >
-          Menu
-        </q-item-label>
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
+        <q-item-label header class="text-grey-8">Menu</q-item-label>
+        <MenuNavigationLink v-for="link in essentialLinks" :key="link.title" v-bind="link" />
       </q-list>
     </q-drawer>
 
@@ -46,63 +29,45 @@
 </template>
 
 <script>
-import EssentialLink from 'components/EssentialLink.vue'
+import MenuNavigationLink from "components/MenuNavigationLink.vue";
 
 export default {
-  name: 'MainLayout',
+  name: "MainLayout",
 
   components: {
-    EssentialLink
+    MenuNavigationLink
   },
 
-  data () {
+  data() {
     return {
       leftDrawerOpen: false,
       essentialLinks: [
-        {
-          title: 'Docs',
-          caption: 'quasar.dev',
-          icon: 'school',
-          link: 'https://quasar.dev'
+         {
+          title: "List Tasks",
+          caption: "Show all tasks and start / stop them",
+          icon: "list",
+          link: "/"
         },
         {
-          title: 'Github',
-          caption: 'github.com/quasarframework',
-          icon: 'code',
-          link: 'https://github.com/quasarframework'
+          title: "Create",
+          caption: "Manually create a new task",
+          icon: "add",
+          link: "createTask"
         },
         {
-          title: 'Discord Chat Channel',
-          caption: 'chat.quasar.dev',
-          icon: 'chat',
-          link: 'https://chat.quasar.dev'
+          title: "Outlook",
+          caption: "Import your Outlook calendar",
+          icon: "import_contacts",
+          link: "/"
         },
-        {
-          title: 'Forum',
-          caption: 'forum.quasar.dev',
-          icon: 'record_voice_over',
-          link: 'https://forum.quasar.dev'
-        },
-        {
-          title: 'Twitter',
-          caption: '@quasarframework',
-          icon: 'rss_feed',
-          link: 'https://twitter.quasar.dev'
-        },
-        {
-          title: 'Facebook',
-          caption: '@QuasarFramework',
-          icon: 'public',
-          link: 'https://facebook.quasar.dev'
-        },
-        {
-          title: 'Quasar Awesome',
-          caption: 'Community Quasar projects',
-          icon: 'favorite',
-          link: 'https://awesome.quasar.dev'
+                {
+          title: "Git",
+          caption: "Import your worked on Branches ",
+          icon: "insights",
+          link: "/"
         }
       ]
-    }
+    };
   }
-}
+};
 </script>
