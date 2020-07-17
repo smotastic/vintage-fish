@@ -14,6 +14,13 @@ const routes = [
       { path: '', component: () => import('pages/CreateTask.vue') }
     ]
   },
+  {
+    path: '/taskList',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/TaskList.vue') }
+    ]
+  },
   // Always leave this as last one,
   // but you can also remove it
   {

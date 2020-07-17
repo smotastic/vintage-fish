@@ -46,7 +46,7 @@ export default {
           title: "List Tasks",
           caption: "Show all tasks and start / stop them",
           icon: "list",
-          link: "/"
+          link: "taskList"
         },
         {
           title: "Create",

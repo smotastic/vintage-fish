@@ -1,3 +1,3 @@
-import { create } from "./local/local.crud"
+import { create, readToday } from "./local/local.crud"
 
-export default { create }
+export default { create, readToday }
