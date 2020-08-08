@@ -47,6 +47,8 @@
 
 <script>
 import Service from "../service";
+import Notify from "../utils/notify";
+import Paths from "../router/paths"
 
 export default {
   name: "CreateTask",
@@ -62,7 +64,12 @@ export default {
   },
   methods: {
     addTask() {
-      Service.create({ ...this.task });
+      Service.create({ ...this.task }).then(success => {
+        Notify.success(success.msg);
+        this.$router.push(Paths.LIST_TASKS);
+      }).catch(error => {
+        Notify.error(error.msg);
+      });
     }
   }
 };

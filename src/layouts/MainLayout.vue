@@ -30,6 +30,7 @@
 
 <script>
 import MenuNavigationLink from "components/MenuNavigationLink.vue";
+import Paths from "../router/paths";
 
 export default {
   name: "MainLayout",
@@ -46,13 +47,13 @@ export default {
           title: "List Tasks",
           caption: "Show all tasks and start / stop them",
           icon: "list",
-          link: "taskList"
+          link: Paths.LIST_TASKS
         },
         {
           title: "Create",
           caption: "Manually create a new task",
           icon: "add",
-          link: "createTask"
+          link: Paths.CREATE_TASK
         },
         {
           title: "Outlook",

@@ -1,3 +1,4 @@
+import Paths from './paths';
 
 const routes = [
   {
@@ -8,14 +9,14 @@ const routes = [
     ]
   },
   {
-    path: '/createTask',
+    path: Paths.CREATE_TASK,
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/CreateTask.vue') }
     ]
   },
   {
-    path: '/taskList',
+    path: Paths.LIST_TASKS,
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/TaskList.vue') }

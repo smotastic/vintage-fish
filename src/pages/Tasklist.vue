@@ -24,7 +24,9 @@ export default {
     };
   },
   created() {
-    this.list = Service.readToday();
+    Service.readToday().then(list => {
+      this.list = list;
+    });
   }
 };
 </script>
