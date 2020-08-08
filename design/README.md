@@ -8,10 +8,17 @@ A task contains the following attributes:
 * summary -> A summary of the task
 * description -> A brief description of the done task
 * adapterType -> Type to see by which adapter the task was created by
+* day -> The DD_MM_YYYY this task was created on
 * started -> Time when the task is started
 * finished -> Time when the task has stopped
 * spentTimes -> An array of the previously spent times on this task ( a task can be stopped and resumed multiple times)
 * running -> marks a task as "currently running"
+
+## Track
+A Tracking Information on how long the user in total worked today (or rather spent time in this application)
+* day -> The DD_MM_YYYY this task was created on
+* started -> Time when the tracking started
+* finished -> Time when the tracking stopped
 
 # Functional Requirements
 
