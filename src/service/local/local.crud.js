@@ -23,9 +23,28 @@ export const create = async (task) => {
     });
 }
 
+export const update = async (task) => {
+    const existing = await readToday();
+    return new Promise((resolve, reject) => {
+        const updatingTask = existing.find(t => t.summary === task.summary);
+        if (updatingTask) {
+            // update
+            const index = existing.indexOf(updatingTask);
+            const key = today();
+            const taskCopy = { ...task };
+            existing[index] = taskCopy;
+            LocalStorage.set(key, existing);
+            resolve(Codes.success.TASK_UPDATE(taskCopy));
+        } else {
+            // create
+            create(task).then(resolve).catch(reject);
+        }
+    });
+}
+
 export const readToday = () => {
     return new Promise((resolve, reject) => {
         const key = today();
-        resolve(LocalStorage.getItem(key) || []);
+        resolve([...LocalStorage.getItem(key)] || []);
     });
 }

@@ -7,3 +7,10 @@ export const today = function () {
     today = mm + '-' + dd + '-' + yyyy;
     return today;
 }
+
+export const now = function () {
+    var now = new Date();
+    var hh = now.getHours();
+    var mm = now.getMinutes();
+    return hh + ':' + mm;
+}
