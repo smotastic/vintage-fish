@@ -1,13 +1,15 @@
 <template>
   <q-page padding>
     <div class="row justify-center q-gutter-md">
-      <div class="col-5" v-for="task in list" :key="task.id">
+      <div class="col-8" v-for="task in list" :key="task.id">
         <TaskCard
           :task="task"
           :onStart="onStart"
           :onStop="onStop"
           :onChangeSummary="onChangeSummary"
           :onChangeDescription="onChangeDescription"
+          :onChangeStarttime="onChangeStarttime"
+          :onChangeEndtime="onChangeEndtime"
         />
       </div>
     </div>
@@ -66,6 +68,20 @@ export default {
     onChangeDescription(task, description) {
       const updatingTask = { ...task };
       updatingTask.description = description;
+      Service.update(updatingTask)
+        .then(this.successChange(task))
+        .catch(this.errorChange);
+    },
+    onChangeStarttime(task, starttime) {
+      const updatingTask = { ...task };
+      updatingTask.starttime = starttime;
+      Service.update(updatingTask)
+        .then(this.successChange(task))
+        .catch(this.errorChange);
+    },
+    onChangeEndtime(task, endtime) {
+      const updatingTask = { ...task };
+      updatingTask.endtime = endtime;
       Service.update(updatingTask)
         .then(this.successChange(task))
         .catch(this.errorChange);

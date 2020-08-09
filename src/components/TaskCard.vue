@@ -1,5 +1,5 @@
 <template>
-  <q-card bordered style="max-height:250px;overflow-y:auto">
+  <q-card bordered style="max-height:300px;overflow-y:auto">
     <q-card-section>
       <div class="text-h6">
         <q-input :value="task.summary" @change="onChangeSummary(task, $event.target.value)" label="Summary" />
@@ -14,21 +14,53 @@
 
     <q-separator inset />
 
-    <q-card-actions>
-      <q-btn v-if="!task.running" flat round icon="play_circle_outline" @click="onStart(task)" />
-      <q-btn v-else flat round icon="pause_circle_outline" @click="onStop(task)" />
-      <TaskTime :task="task" />
-    </q-card-actions>
+    <q-card-section>
+      <div class="row q-gutter-x-lg">
+        <div v-if="!task.running" class="col-2">
+          <q-btn flat round icon="play_circle_outline" @click="onStart(task)" />
+        </div>
+        <div v-else class="col-2">
+          <q-btn flat round icon="pause_circle_outline" @click="onStop(task)" />
+        </div>
+        <div class="col-4">
+          <q-input
+            :value="task.starttime"
+            @change="onChangeStarttime(task, $event.target.value)"
+            mask="time"
+            label="Start Time"
+          >
+            <template v-slot:append>
+              <q-icon name="access_time" class="cursor-pointer">
+                <q-popup-proxy transition-show="scale" transition-hide="scale">
+                  <q-time :value="task.starttime" @input="onChangeStarttime(task, $event)" now-btn format24h />
+                </q-popup-proxy>
+              </q-icon>
+            </template>
+          </q-input>
+        </div>
+        <div class="col-4">
+          <q-input
+            :value="task.endtime"
+            @change="onChangeEndtime(task, $event.target.value)"
+            mask="time"
+            label="End Time"
+          >
+            <template v-slot:append>
+              <q-icon name="access_time" class="cursor-pointer">
+                <q-popup-proxy transition-show="scale" transition-hide="scale">
+                  <q-time :value="task.endtime" @input="onChangeEndtime(task, $event)" now-btn format24h />
+                </q-popup-proxy>
+              </q-icon>
+            </template>
+          </q-input>
+        </div>
+      </div>
+    </q-card-section>
   </q-card>
 </template>
 
 <script>
-import TaskTime from "./TaskTime";
-
 export default {
-  components: {
-    TaskTime,
-  },
   props: {
     task: Object,
     onStart: Function,

@@ -19,7 +19,7 @@ export const startTask = async (task) => {
                     const updatingTask = { ...task };
                     updatingTask.running = true;
                     updatingTask.starttime = now();
-                    updatingTask.endtime = null;
+                    updatingTask.endtime = "";
                     update(updatingTask).then(code => {
                         resolve(Codes.success.TASK_STARTED(code.object));
                     });
