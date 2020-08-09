@@ -46,12 +46,6 @@ export default {
           link: Paths.LIST_TASKS,
         },
         {
-          title: "Create",
-          caption: "Manually create a new task",
-          icon: "add",
-          link: Paths.CREATE_TASK,
-        },
-        {
           title: "Outlook",
           caption: "Import your Outlook calendar",
           icon: "import_contacts",

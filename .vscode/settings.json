@@ -10,7 +10,7 @@
       "wrap_attributes": "force-expand-multiline"
     },
     "prettyhtml": {
-      "printWidth": 120,
+      "printWidth": 140,
       "singleQuote": false,
       "wrapAttributes": false,
       "sortAttributes": false
