@@ -10,10 +10,12 @@
           :onChangeDescription="onChangeDescriptionAdd"
           :onChangeStarttime="onChangeStarttimeAdd"
           :onChangeEndtime="onChangeEndtimeAdd"
+          :expandable="false"
         />
       </template>
       <template v-slot:body="props">
         <TaskRow
+          :props="props"
           :task="props.row"
           :onAction="onAction"
           :icon="props.row.running ? 'pause_circle_outline' : 'play_circle_outline'"
@@ -22,6 +24,9 @@
           :onChangeStarttime="onChangeStarttime"
           :onChangeEndtime="onChangeEndtime"
         />
+        <transition appear enter-active-class="animated backInLeft" leave-active-class="animated backOutRight">
+          <TaskRowExpanded v-if="props.expand" :spenttimes="props.row.spenttimes" />
+        </transition>
       </template>
     </q-table>
   </q-page>
@@ -31,11 +36,13 @@
 import Service from "../service";
 import Notify from "../utils/notify";
 import TaskRow from "../components/TaskRow/TaskRow";
+import TaskRowExpanded from "../components/TaskRow/TaskRowExpanded";
 
 export default {
   name: "Tasklist",
   components: {
     TaskRow,
+    TaskRowExpanded,
   },
   data: () => {
     return {
@@ -134,6 +141,11 @@ export default {
       Service.update(updatingTask)
         .then(this.successChange(task))
         .catch(this.errorChange);
+    },
+    onExpand(props, expanded) {
+      props.expand = expanded;
+      // this.$set(props, "expand", expanded);
+      console.log("false");
     },
     // NEW TASK
     onActionAdd(task) {

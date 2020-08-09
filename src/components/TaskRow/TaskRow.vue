@@ -1,9 +1,9 @@
 <template>
+  <!-- <span> -->
   <q-tr :style="{'backgroundColor': task.running ? runningColor : 'inherit'}">
     <q-td key="action">
-      <div class="col-2">
-        <q-btn flat round :icon="icon" @click="onAction(task)" />
-      </div>
+      <q-btn flat round :icon="icon" @click="onAction(task)" />
+      <q-btn v-if="expandable" flat round :icon="props.expand ? 'remove' : 'add'" @click="props.expand = !props.expand" />
     </q-td>
     <q-td key="summary">
       <q-input @change="onChangeSummary(task, $event.target.value)" :value="task.summary" label="Summary" />
@@ -42,16 +42,27 @@ const { getPaletteColor } = colors;
 
 export default {
   props: {
+    props: Object,
     task: {
       type: Object,
       default: () => ({}),
     },
+    expandable: {
+      type: Boolean,
+      default: true,
+    },
     icon: String,
     onAction: Function,
+    onExpand: Function,
     onChangeSummary: Function,
     onChangeDescription: Function,
     onChangeStarttime: Function,
     onChangeEndtime: Function,
+  },
+  data: () => {
+    return {
+      expanded: false,
+    };
   },
   computed: {
     runningColor() {
@@ -62,7 +73,4 @@ export default {
 </script>
 
 <style scoped>
-tr {
-  background-color: red;
-}
 </style>
