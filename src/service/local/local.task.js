@@ -1,6 +1,7 @@
 import Codes from '../codes';
 import { readToday, update } from './local.crud';
 import { now } from '../util';
+import { uuidv4 } from './local.util';
 
 export const startTask = async (task) => {
     const allTasks = await readToday();
@@ -39,7 +40,10 @@ export const stopTask = (task) => {
             const updatingTask = { ...task };
             updatingTask.running = false;
             updatingTask.endtime = now();
-            // TODO add to spenttimes
+            if (!updatingTask.spenttimes) {
+                updatingTask.spenttimes = [];
+            }
+            updatingTask.spenttimes.push({ id: uuidv4(), starttime: updatingTask.starttime, endtime: updatingTask.endtime });
             update(updatingTask).then(code => {
                 resolve(Codes.success.TASK_STOPPED(code.object));
             });

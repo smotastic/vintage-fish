@@ -20,7 +20,7 @@
 import Service from "../service";
 import Notify from "../utils/notify";
 
-import TaskCard from "../components/TaskCard";
+import TaskCard from "../components/TaskCard/TaskCard";
 
 export default {
   name: "Tasklist",

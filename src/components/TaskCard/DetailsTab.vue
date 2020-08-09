@@ -1,5 +1,5 @@
 <template>
-  <q-card bordered style="max-height:300px;overflow-y:auto">
+  <span>
     <q-card-section>
       <div class="text-h6">
         <q-input :value="task.summary" @change="onChangeSummary(task, $event.target.value)" label="Summary" />
@@ -56,7 +56,7 @@
         </div>
       </div>
     </q-card-section>
-  </q-card>
+  </span>
 </template>
 
 <script>
