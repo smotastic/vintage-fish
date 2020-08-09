@@ -7,6 +7,7 @@
           :onStart="onStart"
           :onStop="onStop"
           :onChangeSummary="onChangeSummary"
+          :onChangeDescription="onChangeDescription"
         />
       </div>
     </div>
@@ -15,47 +16,60 @@
 
 <script>
 import Service from "../service";
-import Notify from '../utils/notify';
+import Notify from "../utils/notify";
 
 import TaskCard from "../components/TaskCard";
 
 export default {
   name: "Tasklist",
   components: {
-    TaskCard
+    TaskCard,
   },
   data: () => {
     return {
-      list: []
+      list: [],
     };
   },
   created() {
-    Service.readToday().then(list => {
+    Service.readToday().then((list) => {
       this.list = list;
     });
   },
   methods: {
     successChange(task) {
-      return code => {
+      return (code) => {
         Notify.success(code.msg);
-        const index = this.list.findIndex(t => t.id === task.id);
+        const index = this.list.findIndex((t) => t.id === task.id);
         this.list.splice(index, 1, code.object);
-      }
+      };
     },
     errorChange(code) {
       Notify.error(code.msg);
     },
     onStart(task) {
-       Service.startTask(task).then(this.successChange(task)).catch(this.errorChange);
+      Service.startTask(task)
+        .then(this.successChange(task))
+        .catch(this.errorChange);
     },
     onStop(task) {
-       Service.stopTask(task).then(this.successChange(task)).catch(this.errorChange);
+      Service.stopTask(task)
+        .then(this.successChange(task))
+        .catch(this.errorChange);
     },
     onChangeSummary(task, summary) {
       const updatingTask = { ...task };
       updatingTask.summary = summary;
-      Service.update(updatingTask).then(this.successChange(task)).catch(this.errorChange);
-    }
-  }
+      Service.update(updatingTask)
+        .then(this.successChange(task))
+        .catch(this.errorChange);
+    },
+    onChangeDescription(task, description) {
+      const updatingTask = { ...task };
+      updatingTask.description = description;
+      Service.update(updatingTask)
+        .then(this.successChange(task))
+        .catch(this.errorChange);
+    },
+  },
 };
 </script>

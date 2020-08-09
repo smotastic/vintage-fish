@@ -8,7 +8,9 @@
 
     <q-separator inset />
 
-    <q-card-section style="font-style: italic">{{task.description || 'A brief description'}}</q-card-section>
+    <q-card-section style="font-style: italic">
+      <q-input @change="onChangeDescription(task, $event.target.value)" :value="task.description" label="Description" />
+    </q-card-section>
 
     <q-separator inset />
 
@@ -21,11 +23,11 @@
 </template>
 
 <script>
-import TaskTime from './TaskTime';
+import TaskTime from "./TaskTime";
 
 export default {
   components: {
-    TaskTime
+    TaskTime,
   },
   props: {
     task: Object,
@@ -34,7 +36,7 @@ export default {
     onChangeSummary: Function,
     onChangeDescription: Function,
     onChangeStarttime: Function,
-    onChangeEndtime: Function
-  }
+    onChangeEndtime: Function,
+  },
 };
 </script>
