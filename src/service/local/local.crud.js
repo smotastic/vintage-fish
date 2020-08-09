@@ -45,6 +45,7 @@ export const update = async (task) => {
 export const readToday = () => {
     return new Promise((resolve, reject) => {
         const key = today();
-        resolve([...LocalStorage.getItem(key)] || []);
+        const l = LocalStorage.getItem(key);
+        resolve(l ? [...l] : []);
     });
 }
