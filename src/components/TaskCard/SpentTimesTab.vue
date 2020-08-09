@@ -42,10 +42,15 @@ export default {
   height: 250px;
   /* this is when the loading indicator appears */
 }
-.my-sticky-header-table .q-table__top,
-.my-sticky-header-table .q-table__bottom,
-.my-sticky-header-table thead tr:first-child th {
+body.body--dark.my-sticky-header-table .q-table__top,
+body.body--dark.my-sticky-header-table .q-table__bottom,
+body.body--dark .my-sticky-header-table thead tr:first-child th {
   background-color: #1d1d1d;
+}
+body.body--light .my-sticky-header-table .q-table__top,
+body.body--light .my-sticky-header-table .q-table__bottom,
+body.body--light .my-sticky-header-table thead tr:first-child th {
+  background-color: white;
 }
 .my-sticky-header-table thead tr th {
   position: sticky;

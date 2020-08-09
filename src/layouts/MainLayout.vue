@@ -2,14 +2,7 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="leftDrawerOpen = !leftDrawerOpen"
-        />
+        <q-btn flat dense round icon="menu" aria-label="Menu" @click="leftDrawerOpen = !leftDrawerOpen" />
 
         <q-toolbar-title>Vintage Fish</q-toolbar-title>
       </q-toolbar>
@@ -19,6 +12,7 @@
       <q-list>
         <q-item-label header class="text-grey-8">Menu</q-item-label>
         <MenuNavigationLink v-for="link in essentialLinks" :key="link.title" v-bind="link" />
+        <ToggleDarkLight />
       </q-list>
     </q-drawer>
 
@@ -29,46 +23,48 @@
 </template>
 
 <script>
-import MenuNavigationLink from "components/MenuNavigationLink.vue";
+import MenuNavigationLink from "components/Menu/MenuNavigationLink.vue";
+import ToggleDarkLight from "components/Menu/ToggleDarkLight.vue";
 import Paths from "../router/paths";
 
 export default {
   name: "MainLayout",
 
   components: {
-    MenuNavigationLink
+    MenuNavigationLink,
+    ToggleDarkLight,
   },
 
   data() {
     return {
       leftDrawerOpen: false,
       essentialLinks: [
-         {
+        {
           title: "List Tasks",
           caption: "Show all tasks and start / stop them",
           icon: "list",
-          link: Paths.LIST_TASKS
+          link: Paths.LIST_TASKS,
         },
         {
           title: "Create",
           caption: "Manually create a new task",
           icon: "add",
-          link: Paths.CREATE_TASK
+          link: Paths.CREATE_TASK,
         },
         {
           title: "Outlook",
           caption: "Import your Outlook calendar",
           icon: "import_contacts",
-          link: "/"
+          link: "/",
         },
-                {
+        {
           title: "Git",
           caption: "Import your worked on Branches ",
           icon: "insights",
-          link: "/"
-        }
-      ]
+          link: "/",
+        },
+      ],
     };
-  }
+  },
 };
 </script>
