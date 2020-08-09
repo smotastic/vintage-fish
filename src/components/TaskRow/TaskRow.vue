@@ -1,5 +1,5 @@
 <template>
-  <q-tr>
+  <q-tr :style="{'backgroundColor': task.running ? runningColor : 'inherit'}">
     <q-td key="action">
       <div class="col-2">
         <q-btn flat round :icon="icon" @click="onAction(task)" />
@@ -37,6 +37,9 @@
 </template>
 
 <script>
+import { colors } from "quasar";
+const { getPaletteColor } = colors;
+
 export default {
   props: {
     task: {
@@ -50,5 +53,16 @@ export default {
     onChangeStarttime: Function,
     onChangeEndtime: Function,
   },
+  computed: {
+    runningColor() {
+      return getPaletteColor("secondary");
+    },
+  },
 };
 </script>
+
+<style scoped>
+tr {
+  background-color: red;
+}
+</style>

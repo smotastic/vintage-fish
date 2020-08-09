@@ -1,17 +1,5 @@
 <template>
   <q-page padding>
-    <!-- <div class="row justify-center q-gutter-md"> -->
-    <!-- <div class="col-8" v-for="task in list" :key="task.id">
-        <TaskCard
-          :task="task"
-          :onStart="onStart"
-          :onStop="onStop"
-          :onChangeSummary="onChangeSummary"
-          :onChangeDescription="onChangeDescription"
-          :onChangeStarttime="onChangeStarttime"
-          :onChangeEndtime="onChangeEndtime"
-        />
-    </div>-->
     <q-table :data="list" :columns="columns" row-key="id">
       <template v-slot:top-row>
         <TaskRow
