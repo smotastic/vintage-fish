@@ -1,7 +1,9 @@
 <template>
-  <q-card bordered style="max-height:200px;overflow-y:auto">
+  <q-card bordered style="max-height:250px;overflow-y:auto">
     <q-card-section>
-      <div class="text-h6">{{task.summary}}</div>
+      <div class="text-h6">
+        <q-input :value="task.summary" @change="onChangeSummary(task, $event.target.value)" label="Summary" />
+      </div>
     </q-card-section>
 
     <q-separator inset />
@@ -28,7 +30,11 @@ export default {
   props: {
     task: Object,
     onStart: Function,
-    onStop: Function
+    onStop: Function,
+    onChangeSummary: Function,
+    onChangeDescription: Function,
+    onChangeStarttime: Function,
+    onChangeEndtime: Function
   }
 };
 </script>

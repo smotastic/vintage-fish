@@ -2,6 +2,13 @@ import { LocalStorage } from 'quasar'
 import { today } from '../util'
 import Codes from '../codes'
 
+const uuidv4 = () => {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
+
 export const create = async (task) => {
     const existing = await readToday();
     return new Promise((resolve, reject) => {
@@ -13,6 +20,7 @@ export const create = async (task) => {
                 currentTasks = [];
             }
             const copiedTask = { ...task };
+            copiedTask.id = uuidv4();
             currentTasks.push(copiedTask);
 
             LocalStorage.set(key, currentTasks);
@@ -26,7 +34,7 @@ export const create = async (task) => {
 export const update = async (task) => {
     const existing = await readToday();
     return new Promise((resolve, reject) => {
-        const updatingTask = existing.find(t => t.summary === task.summary);
+        const updatingTask = existing.find(t => t.id === task.id);
         if (updatingTask) {
             // update
             const index = existing.indexOf(updatingTask);

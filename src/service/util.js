@@ -10,7 +10,7 @@ export const today = function () {
 
 export const now = function () {
     var now = new Date();
-    var hh = now.getHours();
-    var mm = now.getMinutes();
+    var hh = String(now.getHours()).padStart(2, '0');
+    var mm = String(now.getMinutes()).padStart(2, '0');
     return hh + ':' + mm;
 }

@@ -5,6 +5,7 @@ Tool to log the spent time on different Tasks
 
 ## Task
 A task contains the following attributes:
+* id -> The unique technical identifier for this task
 * summary -> A summary of the task
 * description -> A brief description of the done task
 * adapterType -> Type to see by which adapter the task was created by

@@ -1,8 +1,13 @@
 <template>
   <q-page padding>
     <div class="row justify-center q-gutter-md">
-      <div class="col-5" v-for="task in list" :key="task.summary">
-        <TaskCard :task="task" :onStart="onStart" :onStop="onStop" />
+      <div class="col-5" v-for="task in list" :key="task.id">
+        <TaskCard
+          :task="task"
+          :onStart="onStart"
+          :onStop="onStop"
+          :onChangeSummary="onChangeSummary"
+        />
       </div>
     </div>
   </q-page>
@@ -30,21 +35,26 @@ export default {
     });
   },
   methods: {
+    successChange(task) {
+      return code => {
+        Notify.success(code.msg);
+        const index = this.list.findIndex(t => t.id === task.id);
+        this.list.splice(index, 1, code.object);
+      }
+    },
+    errorChange(code) {
+      Notify.error(code.msg);
+    },
     onStart(task) {
-       Service.startTask(task).then(code => {
-          Notify.success(code.msg);
-          const index = this.list.findIndex(t => t.summary === task.summary);
-          this.list.splice(index, 1, code.object);
-        }).catch(code => {
-          Notify.error(code.msg);
-        });
+       Service.startTask(task).then(this.successChange(task)).catch(this.errorChange);
     },
     onStop(task) {
-       Service.stopTask(task).then(code => {
-          Notify.success(code.msg);
-          const index = this.list.findIndex(t => t.summary === task.summary);
-          this.list.splice(index, 1, code.object);
-        });
+       Service.stopTask(task).then(this.successChange(task)).catch(this.errorChange);
+    },
+    onChangeSummary(task, summary) {
+      const updatingTask = { ...task };
+      updatingTask.summary = summary;
+      Service.update(updatingTask).then(this.successChange(task)).catch(this.errorChange);
     }
   }
 };
