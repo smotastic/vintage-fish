@@ -5,14 +5,14 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/TaskList.vue') }
+      { path: '', component: () => import('../pages/TaskList.vue') }
     ]
   },
   {
     path: Paths.LIST_TASKS,
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/TaskList.vue') }
+      { path: '', component: () => import('../pages/TaskList.vue') }
     ]
   },
   // Always leave this as last one,
