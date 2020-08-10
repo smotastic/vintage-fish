@@ -3,7 +3,7 @@
   <q-tr :style="{'backgroundColor': task.running ? runningColor : 'inherit'}">
     <q-td key="action">
       <q-btn flat round :icon="icon" @click="onAction(task)" />
-      <q-btn v-if="expandable" flat round :icon="props.expand ? 'remove' : 'add'" @click="props.expand = !props.expand" />
+      <q-btn v-if="expandable" flat round :icon="props.expand ? 'expand_less' : 'expand_more'" @click="props.expand = !props.expand" />
     </q-td>
     <q-td key="summary">
       <q-input @change="onChangeSummary(task, $event.target.value)" :value="task.summary" label="Summary" />
