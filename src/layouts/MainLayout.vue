@@ -5,6 +5,7 @@
         <q-btn flat dense round icon="menu" aria-label="Menu" @click="leftDrawerOpen = !leftDrawerOpen" />
 
         <q-toolbar-title>Vintage Fish</q-toolbar-title>
+        <SpentTimeOnRunningTask />
       </q-toolbar>
     </q-header>
 
@@ -26,6 +27,7 @@
 import MenuNavigationLink from "components/Menu/MenuNavigationLink.vue";
 import ToggleDarkLight from "components/Menu/ToggleDarkLight.vue";
 import Paths from "../router/paths";
+import SpentTimeOnRunningTask from "components/SpentTimeOnRunningTask";
 
 export default {
   name: "MainLayout",
@@ -33,8 +35,8 @@ export default {
   components: {
     MenuNavigationLink,
     ToggleDarkLight,
+    SpentTimeOnRunningTask,
   },
-
   data() {
     return {
       leftDrawerOpen: false,

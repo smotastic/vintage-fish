@@ -12,5 +12,6 @@ export const now = function () {
     var now = new Date();
     var hh = String(now.getHours()).padStart(2, '0');
     var mm = String(now.getMinutes()).padStart(2, '0');
-    return hh + ':' + mm;
+    var ss = String(now.getSeconds()).padStart(2, '0');
+    return hh + ':' + mm + ":" + ss;
 }

@@ -105,12 +105,14 @@ export default {
       }
     },
     onStart(task) {
-      Service.startTask(task)
+      this.$store
+        .dispatch("startTask", task)
         .then(this.successChange(task))
         .catch(this.errorChange);
     },
     onStop(task) {
-      Service.stopTask(task)
+      this.$store
+        .dispatch("stopTask", task)
         .then(this.successChange(task))
         .catch(this.errorChange);
     },
