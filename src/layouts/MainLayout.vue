@@ -1,12 +1,18 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
-      <q-toolbar>
-        <q-btn flat dense round icon="menu" aria-label="Menu" @click="leftDrawerOpen = !leftDrawerOpen" />
-
-        <q-toolbar-title>Vintage Fish</q-toolbar-title>
-        <SpentTimeOnRunningTask />
-      </q-toolbar>
+      <div class="row">
+        <q-toolbar :class="{'col-8' : $store.getters.showTime}">
+          <q-btn flat dense round icon="menu" aria-label="Menu" @click="leftDrawerOpen = !leftDrawerOpen" />
+          <q-toolbar-title>Vintage Fish</q-toolbar-title>
+        </q-toolbar>
+        <q-toolbar v-if="$store.getters.showTime" class="col-4 bg-secondary">
+          <q-toolbar-title>{{$store.state.manageTask.summary}}</q-toolbar-title>
+          <div style="font-size:21px">
+            <SpentTimeOnRunningTask />
+          </div>
+        </q-toolbar>
+      </div>
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>

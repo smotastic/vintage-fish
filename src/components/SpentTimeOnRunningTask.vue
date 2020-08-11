@@ -7,7 +7,7 @@ import { now } from "../service/util";
 export default {
   created() {
     setInterval(() => {
-      if (this.$store.state.manageTask.starttime) {
+      if (this.$store.getters.showTime) {
         const start = Date.parse(
           `1970-01.01 ${this.$store.state.manageTask.starttime}`
         );

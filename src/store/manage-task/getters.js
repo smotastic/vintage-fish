@@ -1,3 +1,3 @@
-export function runningTask(state) {
-    return state.summary;
+export function showTime(state) {
+    return state.starttime;
 }
