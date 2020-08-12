@@ -119,8 +119,9 @@ export default {
     onChangeSummary(task, summary) {
       const updatingTask = { ...task };
       updatingTask.summary = summary;
-      Service.update(updatingTask)
-        .then(this.successChange(task))
+      this.$store
+        .dispatch("update", updatingTask)
+        .then(this.successChange(updatingTask))
         .catch(this.errorChange);
     },
     onChangeDescription(task, description) {
@@ -143,11 +144,6 @@ export default {
       Service.update(updatingTask)
         .then(this.successChange(task))
         .catch(this.errorChange);
-    },
-    onExpand(props, expanded) {
-      props.expand = expanded;
-      // this.$set(props, "expand", expanded);
-      console.log("false");
     },
     // NEW TASK
     onActionAdd(task) {

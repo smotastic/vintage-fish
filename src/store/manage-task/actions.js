@@ -17,3 +17,13 @@ export function stopTask(context, task) {
         }).catch(reject);
     });
 }
+
+export function update(context, task) {
+    return new Promise((resolve, reject) => {
+        Service.update(task)
+            .then(code => {
+                context.commit("changeTask", code.object)
+                resolve(code);
+            }).catch(reject);
+    });
+}

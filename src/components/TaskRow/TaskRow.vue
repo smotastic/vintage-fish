@@ -12,7 +12,7 @@
       <q-input @change="onChangeDescription(task, $event.target.value)" :value="task.description" label="Description" />
     </q-td>
     <q-td key="starttime">
-      <q-input :value="task.starttime" @change="onChangeStarttime(task, $event.target.value)" mask="time" label="Start Time">
+      <q-input :value="task.starttime" @change="onChangeStarttime(task, $event.target.value)" mask="time" label="Start Time" :disable="task.running">
         <template v-slot:append>
           <q-icon name="access_time" class="cursor-pointer">
             <q-popup-proxy transition-show="scale" transition-hide="scale">
