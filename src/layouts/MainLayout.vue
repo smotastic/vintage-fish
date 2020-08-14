@@ -7,10 +7,11 @@
           <q-separator vertical inset spaced />
           <q-toolbar-title>Vintage Fish</q-toolbar-title>
 
-          <q-separator vertical inset spaced />
-          <div class="row q-col-gutter-md" style="font-size:21px">
-            <div class="col">{{$store.state.manageTask.summary}}</div>
-            <div class="col">
+          <q-separator v-if="$store.getters.showTime" vertical inset spaced />
+
+          <div style="min-width:200px; font-size:21px" class="row q-col-gutter-md">
+            <div class="col-6 dotdotdot" :title="$store.state.manageTask.summary">{{$store.state.manageTask.summary}}</div>
+            <div class="col-6">
               <SpentTimeOnRunningTask />
             </div>
           </div>
@@ -79,3 +80,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.dotdotdot {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+</style>
