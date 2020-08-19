@@ -127,22 +127,25 @@ export default {
     onChangeDescription(task, description) {
       const updatingTask = { ...task };
       updatingTask.description = description;
-      Service.update(updatingTask)
-        .then(this.successChange(task))
+      this.$store
+        .dispatch("update", updatingTask)
+        .then(this.successChange(updatingTask))
         .catch(this.errorChange);
     },
     onChangeStarttime(task, starttime) {
       const updatingTask = { ...task };
       updatingTask.starttime = starttime;
-      Service.update(updatingTask)
-        .then(this.successChange(task))
+      this.$store
+        .dispatch("update", updatingTask)
+        .then(this.successChange(updatingTask))
         .catch(this.errorChange);
     },
     onChangeEndtime(task, endtime) {
       const updatingTask = { ...task };
       updatingTask.endtime = endtime;
-      Service.update(updatingTask)
-        .then(this.successChange(task))
+      this.$store
+        .dispatch("update", updatingTask)
+        .then(this.successChange(updatingTask))
         .catch(this.errorChange);
     },
     // NEW TASK

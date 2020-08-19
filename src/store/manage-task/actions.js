@@ -18,11 +18,23 @@ export function stopTask(context, task) {
     });
 }
 
+export function create(context, task) {
+    return new Promise((resolve, reject) => {
+        Service.create(task)
+            .then(code => {
+                resolve(code);
+            }).catch(reject);
+    });
+}
+
 export function update(context, task) {
     return new Promise((resolve, reject) => {
         Service.update(task)
             .then(code => {
-                context.commit("changeTask", code.object)
+                // running task changed
+                if (code.object.id === context.state.id) {
+                    context.commit("changeTask", code.object)
+                }
                 resolve(code);
             }).catch(reject);
     });
